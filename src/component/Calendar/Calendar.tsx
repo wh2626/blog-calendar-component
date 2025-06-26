@@ -19,7 +19,7 @@ export const Calendar: FC = () => {
           ＜
         </button>
         <span className="text-center font-bold text-lg">
-          {selectedMonth.format('YYYY年M月')}
+          {selectedMonth.format('YYYY.M')}
         </span>
         <button onClick={handleNextMonth} className="cursor-pointer font-bold">
           ＞
@@ -29,10 +29,7 @@ export const Calendar: FC = () => {
         <thead>
           <tr className="grid grid-cols-7">
             {['日', '月', '火', '水', '木', '金', '土'].map((day, index) => (
-              <th
-                key={index}
-                className="border-collapse border border-slate-500 p-2"
-              >
+              <th key={index} className=" p-2">
                 {day}
               </th>
             ))}
@@ -42,20 +39,14 @@ export const Calendar: FC = () => {
           {calendarData.map((calendar, index) => (
             <tr key={index} className="grid grid-cols-7">
               {calendar.map((date, index) => (
-                <td
-                  key={index}
-                  className="border-collapse border border-slate-500"
-                >
+                <td key={index} className="">
                   <button
                     onClick={() => handleSelectDate(date)}
                     className="text-center w-full cursor-pointer p-2"
                     style={{
                       backgroundColor: date.isSame(selectedDate, 'day')
-                        ? '#f0f0f0'
+                        ? '#C0C9EE'
                         : 'transparent',
-                      color: date.isSame(selectedDate, 'day')
-                        ? '#333'
-                        : '#f0f0f0',
                       fontWeight: date.isSame(selectedDate, 'day')
                         ? 'bold'
                         : 'normal',
@@ -70,7 +61,9 @@ export const Calendar: FC = () => {
         </tbody>
       </table>
       <p className="text-center mt-8 text-xl font-bold">
-        選択された日: {dayjs(selectedDate).format('YYYY年M月D日')}
+        選択された日
+        <br />
+        {dayjs(selectedDate).format('YYYY/M/D')}
       </p>
     </div>
   )
